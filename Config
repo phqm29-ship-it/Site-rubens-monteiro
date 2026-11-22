@@ -1,0 +1,88 @@
+# Painel do site de Rubens Monteiro (Decap CMS, backend GitHub).
+# ANTES DE PUBLICAR: troque SEU-USUARIO/SEU-REPOSITORIO pelo repositório real (ex.: joao/site-rubens).
+# Não coloque aqui nenhum Client Secret, token ou senha: eles ficam só no Netlify.
+backend:
+  name: github
+  repo: SEU-USUARIO/SEU-REPOSITORIO
+  branch: main
+
+media_folder: uploads
+public_folder: /uploads
+locale: pt
+
+collections:
+  - name: site
+    label: Conteúdo do site
+    editor:
+      preview: false
+    files:
+      - name: dados
+        label: Dados do site
+        file: dados.json
+        format: json
+        fields:
+          - label: Profissional
+            name: perito
+            widget: object
+            fields:
+              - {label: Nome, name: nome, widget: string}
+              - {label: Título profissional, name: titulo, widget: string}
+              - {label: Fotografia, name: foto, widget: image, required: false, hint: "Envie uma foto leve (até cerca de 300 KB)."}
+              - {label: Descrição da foto (acessibilidade), name: foto_alt, widget: string, required: false, hint: "Ex.: Retrato de Rubens Monteiro."}
+              - {label: Texto de apresentação (início do site), name: resumo, widget: text, required: false, hint: "Poucas frases. Linha em branco separa parágrafos."}
+              - {label: Minha história, name: biografia, widget: text, required: false, hint: "Linha em branco separa parágrafos."}
+              - {label: Minha trajetória profissional, name: trajetoria, widget: text, required: false}
+              - {label: Minha preparação técnica, name: preparacao_tecnica, widget: text, required: false}
+              - {label: Meu propósito profissional, name: proposito, widget: text, required: false}
+              - {label: Meu compromisso com a ética e a verdade documental, name: compromisso_etico, widget: text, required: false}
+              - label: Formação acadêmica
+                name: formacao
+                widget: list
+                required: false
+                summary: "{{fields.titulo}}"
+                fields: &item
+                  - {label: Título, name: titulo, widget: string, required: false}
+                  - {label: Instituição ou órgão, name: instituicao, widget: string, required: false}
+                  - {label: Período, name: periodo, widget: string, required: false}
+                  - {label: Observação, name: observacao, widget: text, required: false}
+              - label: Cursos e certificações
+                name: certificacoes
+                widget: list
+                required: false
+                summary: "{{fields.titulo}}"
+                fields: *item
+              - label: Experiência profissional
+                name: experiencia
+                widget: list
+                required: false
+                summary: "{{fields.titulo}}"
+                fields: *item
+              - label: Cadastros em tribunais
+                name: cadastros
+                widget: list
+                required: false
+                summary: "{{fields.titulo}}"
+                fields: *item
+          - label: Contatos
+            name: contatos
+            widget: object
+            fields:
+              - label: WhatsApp (somente números)
+                name: whatsapp
+                widget: string
+                pattern: ['^\d{12,13}$', 'Somente números, com 55 + DDD (ex.: 5521999999999).']
+              - {label: Telefone (como será exibido), name: telefone, widget: string, hint: "Ex.: +55 21 99999-9999"}
+              - label: E-mail
+                name: email
+                widget: string
+                pattern: ['^[^\s@]+@[^\s@]+\.[^\s@]+$', 'Informe um e-mail válido.']
+              - {label: Localidade (opcional), name: localidade, widget: string, required: false}
+          - label: Serviços
+            name: servicos
+            widget: list
+            required: false
+            summary: "{{fields.nome}}"
+            fields:
+              - {label: Nome do serviço, name: nome, widget: string}
+              - {label: Descrição, name: descricao, widget: text}
+              - {label: Indicado para, name: indicado_para, widget: text, required: false}
