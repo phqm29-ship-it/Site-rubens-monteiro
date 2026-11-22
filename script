@@ -1,0 +1,203 @@
+/* Rubens Monteiro — script.js (JavaScript puro, sem dependências)
+   Ordem: 1) utilitários  2) dados  3) preenchimento da página  4) menu  5) bancada de análise  6) início */
+(() => {
+  'use strict';
+
+  /* ===== 1. Utilitários (todo texto entra na página com textContent, nunca innerHTML) ===== */
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const txt = v => (typeof v === 'string' ? v.trim() : '');
+  const get = (o, p) => p.split('.').reduce((a, k) => (a == null ? a : a[k]), o);
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; };
+  const LISTAS = ['formacao', 'certificacoes', 'experiencia', 'cadastros'];
+
+  /* ===== 2. Dados: campo ausente = campo vazio (o painel pode omitir campos vazios ao salvar) ===== */
+  function normalizar(d) {
+    d = d && typeof d === 'object' ? d : {};
+    const p = d.perito || {}, c = d.contatos || {};
+    const itens = a => (Array.isArray(a) ? a : [])
+      .map(i => ({ titulo: txt(i && i.titulo), instituicao: txt(i && i.instituicao), periodo: txt(i && i.periodo), observacao: txt(i && i.observacao) }))
+      .filter(i => i.titulo || i.instituicao || i.periodo || i.observacao);
+    const out = { perito: {}, contatos: {} };
+    ['nome', 'titulo', 'foto', 'foto_alt', 'resumo', 'biografia', 'trajetoria', 'preparacao_tecnica', 'proposito', 'compromisso_etico'].forEach(k => { out.perito[k] = txt(p[k]); });
+    LISTAS.forEach(k => { out.perito[k] = itens(p[k]); });
+    ['whatsapp', 'telefone', 'email', 'localidade'].forEach(k => { out.contatos[k] = txt(c[k]); });
+    out.servicos = (Array.isArray(d.servicos) ? d.servicos : [])
+      .map(s => ({ nome: txt(s && s.nome), descricao: txt(s && s.descricao), indicado_para: txt(s && s.indicado_para) }))
+      .filter(s => s.nome || s.descricao);
+    return out;
+  }
+
+  /* ===== 3. Preenchimento da página ===== */
+  function paragrafos(box, t) {
+    box.replaceChildren();
+    t.split(/\n\s*\n/).map(s => s.trim()).filter(Boolean).forEach(s => box.append(el('p', '', s)));
+  }
+
+  function lista(box, itens) {
+    box.replaceChildren();
+    itens.forEach(i => {
+      const li = el('li');
+      if (i.titulo) li.append(el('strong', '', i.titulo));
+      const meta = [i.instituicao, i.periodo].filter(Boolean).join(' · ');
+      if (meta) li.append(el('em', '', meta));
+      if (i.observacao) li.append(el('p', '', i.observacao));
+      box.append(li);
+    });
+  }
+
+  function preencher(d) {
+    // Campos simples: data-campo="grupo.campo". Vazio => elemento oculto.
+    $$('[data-campo]').forEach(n => {
+      const v = get(d, n.dataset.campo);
+      const t = typeof v === 'string' ? v : '';
+      n.textContent = t;
+      n.hidden = !t;
+    });
+
+    // Sobre: bloco vazio some; sem nenhum bloco, somem a seção e o link do menu.
+    $$('[data-bloco]').forEach(b => {
+      const v = get(d, b.dataset.bloco);
+      const box = $('[data-texto],[data-lista]', b);
+      if (Array.isArray(v)) lista(box, v); else paragrafos(box, v || '');
+      b.hidden = !(Array.isArray(v) ? v.length : v);
+    });
+    const sobre = $('#sobre');
+    const temSobre = $$('[data-bloco]', sobre).some(b => !b.hidden);
+    sobre.hidden = !temSobre;
+    $$('[data-nav="sobre"]').forEach(a => { a.hidden = !temSobre; });
+
+    // Fotografia: aceita apenas caminhos dentro de /uploads.
+    const f = d.perito.foto;
+    const okFoto = /^\/?uploads\/[\w\-./%]+$/i.test(f) && !f.includes('..');
+    const src = f.startsWith('/') ? f : '/' + f;
+    $$('[data-foto]').forEach(i => {
+      i.hidden = !okFoto;
+      if (okFoto) { i.src = src; i.alt = d.perito.foto_alt || 'Fotografia de ' + d.perito.nome; }
+    });
+    $$('[data-moldura]').forEach(m => m.classList.toggle('tem-foto', okFoto));
+
+    // Serviços.
+    const ol = $('[data-servicos]');
+    ol.replaceChildren();
+    d.servicos.forEach((s, i) => {
+      const li = el('li', 'ficha');
+      li.append(el('span', 'ficha__n', String(i + 1).padStart(2, '0')), el('h3', '', s.nome), el('p', '', s.descricao));
+      if (s.indicado_para) {
+        const p = el('p', 'ficha__para');
+        p.append(el('strong', '', 'Indicado para: '), document.createTextNode(s.indicado_para));
+        li.append(p);
+      }
+      ol.append(li);
+    });
+    $('#servicos').hidden = !d.servicos.length;
+    $$('[data-nav="servicos"]').forEach(a => { a.hidden = !d.servicos.length; });
+
+    // Links de contato, gerados só a partir de números e e-mail válidos.
+    const c = d.contatos;
+    const wa = c.whatsapp.replace(/\D/g, '');
+    const tel = c.telefone.replace(/(?!^\+)\D/g, '');
+    $$('[data-wa]').forEach(a => { if (wa.length >= 10) { a.href = 'https://wa.me/' + wa; a.target = '_blank'; a.rel = 'noopener noreferrer'; } });
+    $$('[data-tel]').forEach(a => { if (tel.replace(/\D/g, '').length >= 10) a.href = 'tel:' + tel; else a.hidden = true; });
+    $$('[data-mail]').forEach(a => { if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.email)) a.href = 'mailto:' + c.email; else a.hidden = true; });
+
+    // Dados estruturados (Schema.org Person), montados a partir do JSON; sem endereço.
+    const ld = { '@context': 'https://schema.org', '@type': 'Person', name: d.perito.nome, jobTitle: d.perito.titulo };
+    if (okFoto) ld.image = location.origin + src;
+    if (c.email) ld.email = c.email;
+    if (tel) ld.telephone = tel;
+    const s = el('script');
+    s.type = 'application/ld+json';
+    s.textContent = JSON.stringify(ld);
+    document.head.append(s);
+  }
+
+  /* ===== 4. Menu móvel e borda do cabeçalho ===== */
+  function menu() {
+    const b = $('.menu-btn'), m = $('#menu'), topo = $('#topo');
+    const fechar = () => { b.setAttribute('aria-expanded', 'false'); m.classList.remove('aberto'); };
+    b.addEventListener('click', () => {
+      const abrir = b.getAttribute('aria-expanded') !== 'true';
+      b.setAttribute('aria-expanded', String(abrir));
+      m.classList.toggle('aberto', abrir);
+    });
+    m.addEventListener('click', e => { if (e.target.closest('a')) fechar(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') fechar(); });
+    const rolagem = () => topo.classList.toggle('rolou', window.scrollY > 8);
+    rolagem();
+    window.addEventListener('scroll', rolagem, { passive: true });
+  }
+
+  /* ===== 5. Bancada de análise (traços sintéticos; didático, não é exame pericial) ===== */
+  const CAR = {
+    ataque: ['Ataque', 'Como o traço começa: o ponto de partida e os primeiros milímetros do movimento. Os círculos marcam o início de cada segmento.'],
+    remate: ['Remate', 'Como o traço termina: se é seco, prolongado, recolhido ou em gancho. Os círculos marcam o fim de cada segmento.'],
+    calibre: ['Calibre', 'Dimensão dos grafismos (altura e largura) e sua constância ao longo da escrita. Use o controle para variar o tamanho da amostra.'],
+    pressao: ['Pressão gráfica', 'Força aplicada ao instrumento escritor; pode deixar marcas no suporte e variações de intensidade. Em imagem digital, a espessura ou a cor do traço, sozinha, não permite concluir sobre pressão: o exame depende do original, do instrumento e do suporte.'],
+    inclinacao: ['Inclinação axial', 'Ângulo do eixo das letras em relação à linha de base. Mova o controle e observe o eixo tracejado.'],
+    momentos: ['Momentos gráficos', 'Trechos executados sem levantar o instrumento escritor. Os números indicam a ordem dos três segmentos desta amostra.']
+  };
+
+  function bancada() {
+    const sv = $('#amostra'), g = $('#grafia'), eixo = $('#eixo'), ex = $('#explica');
+    const ri = $('#r-inc'), rc = $('#r-cal'), lupa = $('#lupa'), palco = $('#palco');
+    if (!sv) return;
+    let inc = 0, esc = 1;
+
+    const aplicar = () => {
+      g.setAttribute('transform', `translate(160 112) skewX(${-inc}) scale(${esc}) translate(-160 -112)`);
+      eixo.setAttribute('transform', `rotate(${inc} 160 112)`);
+    };
+    ri.addEventListener('input', () => { inc = Number(ri.value); aplicar(); });
+    rc.addEventListener('input', () => { esc = Number(rc.value) / 100; aplicar(); });
+
+    $$('[data-car]').forEach(b => b.addEventListener('click', () => {
+      const k = b.dataset.car;
+      $$('[data-car]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      sv.setAttribute('class', 'm-' + k);
+      ex.replaceChildren(el('strong', '', CAR[k][0] + '. '), document.createTextNode(CAR[k][1]));
+      ri.parentElement.hidden = k !== 'inclinacao';
+      rc.parentElement.hidden = k !== 'calibre';
+    }));
+
+    // Lupa: mouse (passar), toque (tocar e arrastar) e teclado (setas).
+    const mover = (cx, cy) => {
+      const r = sv.getBoundingClientRect(), p = palco.getBoundingClientRect();
+      const x = (cx - r.left) / r.width * 320, y = (cy - r.top) / r.height * 140;
+      lupa.firstElementChild.setAttribute('viewBox', `${x - 18} ${y - 18} 36 36`);
+      lupa.style.left = (cx - p.left) + 'px';
+      lupa.style.top = (cy - p.top) + 'px';
+      lupa.hidden = false;
+    };
+    const esconder = () => { lupa.hidden = true; };
+    palco.addEventListener('pointerdown', e => mover(e.clientX, e.clientY));
+    palco.addEventListener('pointermove', e => { if (e.pointerType === 'mouse' || !lupa.hidden) mover(e.clientX, e.clientY); });
+    ['pointerup', 'pointercancel', 'pointerleave', 'blur'].forEach(n => palco.addEventListener(n, esconder));
+    let kx = 160, ky = 70;
+    palco.addEventListener('keydown', e => {
+      const d = { ArrowLeft: [-10, 0], ArrowRight: [10, 0], ArrowUp: [0, -10], ArrowDown: [0, 10] }[e.key];
+      if (!d) return;
+      e.preventDefault();
+      kx = Math.max(0, Math.min(320, kx + d[0]));
+      ky = Math.max(0, Math.min(140, ky + d[1]));
+      const r = sv.getBoundingClientRect();
+      mover(r.left + kx / 320 * r.width, r.top + ky / 140 * r.height);
+    });
+  }
+
+  /* ===== 6. Início: falha ao carregar não derruba a página ===== */
+  async function iniciar() {
+    menu();
+    bancada();
+    $('#ano').textContent = new Date().getFullYear();
+    try {
+      const r = await fetch('dados.json', { cache: 'no-cache' });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      preencher(normalizar(await r.json()));
+    } catch (e) {
+      console.error('Não foi possível carregar dados.json:', e);
+      $$('[data-erro]').forEach(n => { n.hidden = false; });
+    }
+  }
+  iniciar();
+})();
