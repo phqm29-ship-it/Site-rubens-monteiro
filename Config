@@ -3,7 +3,7 @@
 # Não coloque aqui nenhum Client Secret, token ou senha: eles ficam só no Netlify.
 backend:
   name: github
-  repo: SEU-USUARIO/SEU-REPOSITORIO
+  repo: phqm29-ship-it/Site-rubens-monteiro
   branch: main
 
 media_folder: uploads
