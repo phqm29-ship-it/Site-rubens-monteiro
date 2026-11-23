@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rubens Monteiro — Perito Grafotécnico e Assistente Técnico Extrajudicial</title>
+<meta name="description" content="Perícia grafotécnica e análise de assinaturas e documentos: parecer técnico extrajudicial, quesitos e análise crítica de laudos. Contato direto com Rubens Monteiro.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#FAFAFA">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Rubens Monteiro — Perito Grafotécnico e Assistente Técnico Extrajudicial">
+<meta property="og:description" content="Perícia grafotécnica e análise de assinaturas e documentos. Contato direto com Rubens Monteiro.">
+<!-- Depois de publicar: acrescente og:url, canonical e og:image com o endereço final do site. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F172A'/%3E%3Ctext x='16' y='22' font-size='14' text-anchor='middle' fill='%23D97706' font-family='Georgia,serif'%3ERM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Lora:wght@500;600&amp;display=swap">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="script.js" defer></script>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m22 6-10 7L2 6"/></symbol>
+</svg>
+<a class="pular" href="#conteudo">Ir para o conteúdo</a>
+
+<header class="topo" id="topo">
+  <div class="container topo__in">
+    <a class="marca" href="#inicio"><span class="marca__rm" aria-hidden="true">RM</span><span data-campo="perito.nome">Rubens Monteiro</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span class="sr">Menu</span><span class="menu-btn__ico" aria-hidden="true"></span></button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="#atuacao">Atuação</a>
+      <a href="#servicos" data-nav="servicos" hidden>Serviços</a>
+      <a href="#demonstracoes">Demonstração</a>
+      <a href="#sobre" data-nav="sobre" hidden>Trajetória</a>
+      <a class="botao botao--p botao--sm" href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- INÍCIO -->
+<section class="hero" id="inicio" aria-labelledby="h-inicio">
+  <div class="container hero__grid">
+    <div>
+      <h1 id="h-inicio" class="revelar">
+        <span class="hero__nome" data-campo="perito.nome">Rubens Monteiro</span>
+        <span class="hero__titulo" data-campo="perito.titulo">Perito Grafotécnico e Assistente Técnico Extrajudicial</span>
+      </h1>
+      <p class="hero__resumo revelar" data-campo="perito.resumo" hidden></p>
+      <p class="hero__lead revelar">Perícia grafotécnica, análise de assinaturas e documentos e assistência técnica para advogados, empresas e pessoas físicas.</p>
+      <div class="acoes revelar">
+        <!-- Os links abaixo já funcionam sem JavaScript; o script.js os atualiza a partir do dados.json. -->
+        <a class="botao botao--p" data-wa href="https://wa.me/5521964177283" target="_blank" rel="noopener noreferrer"><svg class="icone" aria-hidden="true"><use href="#i-wa"/></svg>Entre em contato</a>
+        <a class="botao botao--s" href="#atuacao">Conheça a atuação</a>
+      </div>
+      <p class="aviso" data-erro hidden>Alguns conteúdos não puderam ser carregados agora. Atualize a página; os contatos continuam disponíveis.</p>
+    </div>
+    <figure class="foto hero__fig revelar">
+      <img data-ilus="hero" src="https://images.unsplash.com/photo-1649954049118-1c213fcdeadc?auto=format&amp;fit=crop&amp;q=70&amp;w=900" srcset="https://images.unsplash.com/photo-1649954049118-1c213fcdeadc?auto=format&amp;fit=crop&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1649954049118-1c213fcdeadc?auto=format&amp;fit=crop&amp;q=70&amp;w=1100 1100w" sizes="(min-width:64em) 40vw, 90vw" width="900" height="1125" alt="Mão segurando uma caneta-tinteiro, prestes a escrever" fetchpriority="high" decoding="async">
+      <img data-foto width="480" height="600" alt="" decoding="async" hidden>
+    </figure>
+  </div>
+</section>
+
+<!-- O QUE FAZ UM PERITO -->
+<section class="secao" id="atuacao" aria-labelledby="h-atuacao">
+  <div class="container atuacao">
+    <div class="atuacao__lado revelar">
+      <h2 id="h-atuacao">O que faz um Perito Grafotécnico e Assistente Técnico Extrajudicial</h2>
+      <p class="atuacao__intro">Uma explicação direta sobre a perícia grafotécnica e sobre a diferença entre atuar em um processo judicial e fora dele.</p>
+      <figure class="foto">
+        <img data-ilus src="https://images.unsplash.com/photo-1457298483369-0a95d2b17fcd?auto=format&amp;fit=crop&amp;q=70&amp;w=900" srcset="https://images.unsplash.com/photo-1457298483369-0a95d2b17fcd?auto=format&amp;fit=crop&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1457298483369-0a95d2b17fcd?auto=format&amp;fit=crop&amp;q=70&amp;w=1100 1100w" sizes="(min-width:64em) 40vw, 90vw" width="900" height="675" alt="Detalhe da ponta de uma caneta-tinteiro dourada" loading="lazy" decoding="async">
+      </figure>
+    </div>
+    <div class="atuacao__texto">
+      <div class="bloco revelar"><h3>O que é a perícia grafotécnica</h3><p>É o exame técnico da escrita manuscrita e das assinaturas. Parte da observação de características gráficas para esclarecer, com método, dúvidas sobre a autoria ou a autenticidade de um documento.</p></div>
+      <div class="bloco revelar"><h3>O que é analisado</h3><p>Comparam-se o material questionado e os padrões de escrita conhecidos da pessoa. Observam-se, por exemplo, a forma das letras, o modo de iniciar e finalizar os traços, a inclinação, o tamanho e a sequência de execução.</p></div>
+      <div class="bloco revelar"><h3>Comparação e autenticidade</h3><p>A análise comparativa procura identificar convergências e divergências entre os grafismos, levando em conta a variação natural da escrita de uma mesma pessoa. As conclusões dependem da qualidade e da quantidade do material disponível, e não são antecipadas nem garantidas.</p></div>
+      <div class="bloco revelar"><h3>Quem pode se beneficiar</h3><p>Advogados e escritórios, que precisam de embasamento técnico sobre documentos; empresas, que lidam com contratos e registros; e pessoas com dúvida sobre a autenticidade de um documento ou de uma assinatura.</p></div>
+      <div class="bloco revelar"><h3>Uma breve história</h3><p>A escrita sempre serviu para registrar compromissos, e com ela surgiu a necessidade de verificar a autoria de um texto ou de uma assinatura. Com o tempo, essa verificação deixou de depender apenas da impressão pessoal e passou a seguir métodos de observação e comparação. Hoje, a análise convive com documentos digitais e assinaturas eletrônicas, o que pede cautela quanto aos limites de cada exame.</p></div>
+    </div>
+  </div>
+  <div class="container">
+    <h3 class="sub revelar">Atuação judicial e extrajudicial</h3>
+    <dl class="comp">
+      <div class="revelar"><dt>Perito nomeado pelo juízo</dt><dd>Profissional designado pelo juiz em um processo para auxiliar a decisão com conhecimento técnico, apresentando laudo.</dd></div>
+      <div class="revelar" style="--i:1"><dt>Assistente técnico da parte</dt><dd>Profissional indicado ou contratado por uma das partes de um processo judicial para acompanhar a perícia e emitir parecer técnico.</dd></div>
+      <div class="revelar" style="--i:2"><dt>Atuação extrajudicial</dt><dd>Análise ou parecer técnico contratado fora de um processo, por exemplo para esclarecer uma dúvida documental. Não tem, por si só, os mesmos poderes processuais dos profissionais que atuam em um processo.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- SERVIÇOS (montados pelo script.js a partir do dados.json) -->
+<section class="secao secao--gelo" id="servicos" aria-labelledby="h-servicos" hidden>
+  <div class="container">
+    <div class="cab revelar"><h2 id="h-servicos">Serviços e áreas de atuação</h2><p>Apoio técnico, sem promessa de resultado.</p></div>
+    <ol class="servicos" data-servicos></ol>
+  </div>
+</section>
+
+<!-- DEMONSTRAÇÃO TÉCNICA -->
+<section class="secao" id="demonstracoes" aria-labelledby="h-demo">
+  <div class="container">
+    <div class="cab revelar"><h2 id="h-demo">Demonstração técnica</h2><p>Explore, com traços sintéticos, o que se observa em uma análise grafotécnica.</p></div>
+    <div class="bancada revelar" id="bancada">
+      <div class="bancada__palco">
+        <figure class="palco papel" id="palco" tabindex="0" role="group" aria-label="Amostra sintética. Toque e arraste, ou use as setas do teclado, para mover a lupa.">
+          <svg id="amostra" viewBox="0 0 320 140" role="img" aria-label="Três segmentos de traço sintético sobre uma linha de base">
+            <defs>
+              <linearGradient id="grad-p" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="320" y2="0"><stop offset="0" stop-color="#0F172A" stop-opacity=".25"/><stop offset=".5" stop-color="#0F172A" stop-opacity="1"/><stop offset="1" stop-color="#0F172A" stop-opacity=".4"/></linearGradient>
+              <g id="tracos">
+                <path class="seg" d="M22 100C30 30 56 24 58 58S52 108 84 90 104 70 112 98"/>
+                <path class="seg" d="M128 96C134 34 160 28 160 62S152 110 184 92 206 72 214 100"/>
+                <path class="seg" d="M232 98C240 38 262 32 262 66S256 108 284 92 300 82 306 96"/>
+                <g class="marc marc--ini"><circle cx="22" cy="100" r="7"/><circle cx="128" cy="96" r="7"/><circle cx="232" cy="98" r="7"/></g>
+                <g class="marc marc--fim"><circle cx="112" cy="98" r="7"/><circle cx="214" cy="100" r="7"/><circle cx="306" cy="96" r="7"/></g>
+                <g class="marc marc--num" text-anchor="middle"><text x="67" y="18">1</text><text x="171" y="18">2</text><text x="269" y="18">3</text></g>
+              </g>
+            </defs>
+            <line class="base" x1="10" y1="112" x2="310" y2="112"/>
+            <line class="eixo" id="eixo" x1="160" y1="16" x2="160" y2="112"/>
+            <use id="amostra-b" href="#tracos" transform="translate(160 112) skewX(-9) scale(.94) translate(-160 -112)"/>
+            <use id="grafia" href="#tracos"/>
+          </svg>
+          <div class="lupa" id="lupa" hidden aria-hidden="true"><svg viewBox="0 0 36 36"><use href="#grafia"/></svg></div>
+        </figure>
+        <p class="legenda">Fig. 01 — traços sintéticos, apenas ilustrativos. Toque e arraste sobre a amostra para usar a lupa.</p>
+      </div>
+      <div class="bancada__painel">
+        <div class="chips" role="group" aria-label="Características gráficas">
+          <button type="button" data-car="ataque" aria-pressed="false">Ataque</button>
+          <button type="button" data-car="remate" aria-pressed="false">Remate</button>
+          <button type="button" data-car="calibre" aria-pressed="false">Calibre</button>
+          <button type="button" data-car="pressao" aria-pressed="false">Pressão gráfica</button>
+          <button type="button" data-car="inclinacao" aria-pressed="false">Inclinação axial</button>
+          <button type="button" data-car="momentos" aria-pressed="false">Momentos gráficos</button>
+        </div>
+        <div class="controles">
+          <label hidden>Inclinação axial<input type="range" id="r-inc" min="-20" max="30" value="0"></label>
+          <label hidden>Calibre (tamanho da amostra)<input type="range" id="r-cal" min="80" max="110" value="100"></label>
+          <label class="check"><input type="checkbox" id="r-b"> Sobrepor a amostra B (comparação visual)</label>
+        </div>
+        <p class="explica" id="explica" aria-live="polite">Escolha uma característica para ver o que ela significa na análise.</p>
+        <p class="nota">Demonstração didática com traços sintéticos. Não representa exame pericial nem permite concluir sobre a autenticidade de qualquer documento ou assinatura. Os limites da análise dependem do tipo, da qualidade e da natureza do material examinado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAJETÓRIA / SOBRE (oculta enquanto não houver conteúdo preenchido no painel) -->
+<section class="secao secao--gelo" id="sobre" aria-labelledby="h-sobre" hidden>
+  <div class="container sobre">
+    <div class="sobre__lado revelar">
+      <figure class="foto sobre__fig" hidden><img data-foto width="480" height="600" alt="" loading="lazy" decoding="async" hidden></figure>
+      <h2 id="h-sobre">Sobre o perito</h2>
+      <p class="sobre__id"><span data-campo="perito.nome">Rubens Monteiro</span><span data-campo="perito.titulo">Perito Grafotécnico e Assistente Técnico Extrajudicial</span></p>
+    </div>
+    <div class="sobre__corpo">
+      <div class="revelar" data-bloco="perito.biografia" hidden><h3>Minha história</h3><div class="prosa" data-texto></div></div>
+      <div class="revelar" data-bloco="perito.trajetoria" hidden><h3>Minha trajetória profissional</h3><div class="prosa" data-texto></div></div>
+      <div class="revelar" data-bloco="perito.preparacao_tecnica" hidden><h3>Minha preparação técnica</h3><div class="prosa" data-texto></div></div>
+      <div class="revelar" data-bloco="perito.proposito" hidden><h3>Meu propósito profissional</h3><div class="prosa" data-texto></div></div>
+      <div class="revelar" data-bloco="perito.compromisso_etico" hidden><h3>Meu compromisso com a ética e a verdade documental</h3><div class="prosa" data-texto></div></div>
+      <div class="revelar" data-bloco="perito.formacao" hidden><h3>Formação acadêmica</h3><ul class="lista" data-lista></ul></div>
+      <div class="revelar" data-bloco="perito.certificacoes" hidden><h3>Cursos e certificações</h3><ul class="lista" data-lista></ul></div>
+      <div class="revelar" data-bloco="perito.experiencia" hidden><h3>Experiência profissional</h3><ul class="lista" data-lista></ul></div>
+      <div class="revelar" data-bloco="perito.cadastros" hidden><h3>Cadastros em tribunais</h3><ul class="lista" data-lista></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO DIRETO -->
+<section class="secao" id="contato" aria-labelledby="h-contato">
+  <div class="container">
+    <div class="contato revelar">
+      <div class="contato__txt">
+        <h2 id="h-contato">Contato direto</h2>
+        <p>Converse diretamente com o profissional pelo canal de sua preferência.</p>
+        <div class="acoes">
+          <!-- Valores de segurança: funcionam mesmo sem JavaScript. O script.js usa o dados.json quando disponível. -->
+          <a class="botao botao--p" data-wa href="https://wa.me/5521964177283" target="_blank" rel="noopener noreferrer"><svg class="icone" aria-hidden="true"><use href="#i-wa"/></svg>Conversar pelo WhatsApp</a>
+          <a class="botao botao--c" data-tel href="tel:+5521964177283"><svg class="icone" aria-hidden="true"><use href="#i-tel"/></svg>Ligar</a>
+          <a class="botao botao--c" data-mail href="mailto:perito.rubensmonteiro@gmail.com"><svg class="icone" aria-hidden="true"><use href="#i-mail"/></svg>Enviar e-mail</a>
+        </div>
+        <ul class="dados">
+          <li><span class="dados__rot">E-mail</span><span class="dados__val" data-campo="contatos.email">perito.rubensmonteiro@gmail.com</span><button class="copiar" type="button" data-copiar="email">Copiar</button></li>
+          <li><span class="dados__rot">WhatsApp e telefone</span><span class="dados__val" data-campo="contatos.telefone">+55 21 96417-7283</span><button class="copiar" type="button" data-copiar="telefone">Copiar</button></li>
+        </ul>
+        <p class="contato__loc" data-campo="contatos.localidade" hidden></p>
+        <p class="aviso aviso--escuro" data-erro hidden>Alguns conteúdos não puderam ser carregados, mas os contatos acima continuam funcionando.</p>
+        <p class="nota">Privacidade: não envie documentos ou materiais sensíveis antes de combinar, diretamente com o profissional, um canal apropriado.</p>
+      </div>
+      <figure class="foto contato__fig">
+        <img data-ilus src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;q=70&amp;w=900" srcset="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;q=70&amp;w=1100 1100w" sizes="(min-width:64em) 36vw, 90vw" width="900" height="600" alt="Caneta-tinteiro sobre papel pautado" loading="lazy" decoding="async">
+      </figure>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="container rodape__grid">
+    <div><strong data-campo="perito.nome">Rubens Monteiro</strong><span data-campo="perito.titulo">Perito Grafotécnico e Assistente Técnico Extrajudicial</span></div>
+    <div>
+      <a data-mail href="mailto:perito.rubensmonteiro@gmail.com"><span data-campo="contatos.email">perito.rubensmonteiro@gmail.com</span></a>
+      <a data-tel href="tel:+5521964177283"><span data-campo="contatos.telefone">+55 21 96417-7283</span></a>
+      <a data-wa href="https://wa.me/5521964177283" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+    <nav aria-label="Rodapé">
+      <a href="#atuacao">Atuação</a>
+      <a href="#servicos" data-nav="servicos" hidden>Serviços</a>
+      <a href="#demonstracoes">Demonstração</a>
+      <a href="#sobre" data-nav="sobre" hidden>Trajetória</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <small>© <span id="ano"></span> <span data-campo="perito.nome">Rubens Monteiro</span>. Todos os direitos reservados. Fotografias: <a href="https://unsplash.com/@hextrovert" target="_blank" rel="noopener noreferrer">Esther Ní Dhonnacha</a>, <a href="https://unsplash.com/@mjkha" target="_blank" rel="noopener noreferrer">MJ K</a> e <a href="https://unsplash.com/@aaronburden" target="_blank" rel="noopener noreferrer">Aaron Burden</a>, via Unsplash.</small>
+  </div>
+</footer>
+
+<noscript><p class="aviso" style="margin:1rem">Ative o JavaScript para ver todo o conteúdo do site. Os botões de contato continuam funcionando.</p></noscript>
+</body>
+</html>
